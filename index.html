@@ -68,25 +68,10 @@
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.2s;
         }
         .nav-links a:hover {
             color: var(--primary);
-            transform: translateY(-2px);
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
         }
         .hero {
             padding: 8rem 0 4rem;
@@ -169,12 +154,8 @@
             transition: transform 0.3s ease;
             display: block;
         }
-        .achievement img {
-            animation: float 6s ease-in-out infinite;
-        }
         .achievement img:hover {
             transform: scale(1.05) rotate(5deg);
-            animation-play-state: paused;
         }
         .image-caption {
             font-size: 0.75rem;
@@ -211,16 +192,6 @@
         }
         section {
             padding: 4rem 0;
-            animation: slideInFromBottom 1s ease-out both;
-        }
-        .about {
-            animation-delay: 0.2s;
-        }
-        .blogs {
-            animation-delay: 0.4s;
-        }
-        #contact {
-            animation-delay: 0.6s;
         }
         section h3 {
             font-size: 1.75rem;
@@ -237,25 +208,10 @@
         .contact a {
             color: var(--primary);
             text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
         }
         .contact a:hover {
             text-decoration: underline;
-            transform: translateX(5px);
-            color: #00e6a7;
         }
-        .contact p {
-            animation: slideInFromLeft 0.8s ease-out both;
-        }
-        .contact p:nth-child(2) { animation-delay: 0.1s; }
-        .contact p:nth-child(3) { animation-delay: 0.2s; }
-        .contact p:nth-child(4) { animation-delay: 0.3s; }
-        .contact p:nth-child(5) { animation-delay: 0.4s; }
-        .contact p:nth-child(6) { animation-delay: 0.5s; }
-        .contact p:nth-child(7) { animation-delay: 0.6s; }
-        .contact p:nth-child(8) { animation-delay: 0.7s; }
-        .contact p:nth-child(9) { animation-delay: 0.8s; }
         .contact h4 {
             color: var(--primary);
             font-size: 1.2rem;
@@ -275,15 +231,10 @@
             background: rgba(255,255,255,0.05);
             border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            animation: slideInFromBottom 0.8s ease-out both;
+            transition: transform 0.3s;
         }
-        .blog-card:nth-child(1) { animation-delay: 0.1s; }
-        .blog-card:nth-child(2) { animation-delay: 0.2s; }
-        .blog-card:nth-child(3) { animation-delay: 0.3s; }
         .blog-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 200, 150, 0.2);
+            transform: translateY(-5px);
         }
         .blog-content {
             padding: 1.5rem;
@@ -321,71 +272,14 @@
                 height: auto;
             }
         }
-        /* Animations */
+        /* Fade-in animation */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes slideInFromBottom {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
         body {
             opacity: 0;
             animation: fadeIn 0.8s ease-in forwards;
-        }
-        .hero-img {
-            animation: slideInFromBottom 1s ease-out 0.3s both;
-        }
-        .hero h2 {
-            animation: slideInFromBottom 1s ease-out 0.5s both;
-        }
-        .hero p {
-            animation: slideInFromBottom 1s ease-out 0.7s both;
-        }
-        .achievement {
-            animation: slideInFromBottom 1.2s ease-out 0.9s both;
-        }
-        .stats {
-            animation: slideInFromBottom 1s ease-out 1.1s both;
-        }
-        .stats span:hover {
-            animation: pulse 0.6s ease-in-out;
         }
     </style>
 </head>
@@ -409,7 +303,7 @@
     <main id="home" class="hero">
         <div class="container">
             <img class="hero-img" src="myimage.jpeg" alt="Muhammad Waseem">
-            <h2>Bug Bounty Hunter</h2>
+            <h2>Elite Bug Bounty Hunter</h2>
             <p>Top 1000 worldwide • 200+ companies secured</p>
             
             <!-- Achievement Highlight -->
