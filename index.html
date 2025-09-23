@@ -108,6 +108,65 @@
             border-radius: 50px;
             font-weight: 600;
         }
+        .achievement {
+            background: linear-gradient(135deg, var(--primary), #00a67e);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .achievement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        .achievement-content {
+            position: relative;
+            z-index: 2;
+        }
+        .achievement img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        .achievement h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .achievement p {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+        .bugcrowd-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .bugcrowd-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
         section {
             padding: 4rem 0;
         }
@@ -206,6 +265,19 @@
             <img class="hero-img" src="myimage.jpeg" alt="Muhammad Waseem">
             <h2>Bug Bounty Hunter</h2>
             <p>Top 1000 worldwide • 200+ companies secured</p>
+            
+            <!-- Achievement Highlight -->
+            <div class="achievement">
+                <div class="achievement-content">
+                    <img src="top1000.png" alt="Top 1000 Hackers Badge">
+                    <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
+                    <p>Ranked among the elite security researchers worldwide</p>
+                    <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank" class="bugcrowd-link">
+                        View My Bugcrowd Profile →
+                    </a>
+                </div>
+            </div>
+            
             <div class="stats">
                 <span>Google</span>
                 <span>NASA</span>
@@ -270,7 +342,8 @@
         <div class="container">
             <h3>Contact</h3>
             <p>📧 security@waseem.dev</p>
-            <p>🔗 <a href="https://bugcrowd.com/h/MuhammadWaseem">Bugcrowd Profile</a></p>
+            <p>🏆 <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank">My Bugcrowd Profile - Top 1000 Hacker</a></p>
+            <p>🔗 <a href="https://github.com/MuhammadWaseem29" target="_blank">GitHub Profile</a></p>
         </div>
     </section>
 
