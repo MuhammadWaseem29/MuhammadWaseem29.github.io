@@ -113,7 +113,6 @@
             padding: 3rem;
             border-radius: 20px;
             margin: 3rem 0;
-            text-align: center;
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 200, 150, 0.3);
@@ -135,44 +134,52 @@
         .achievement-content {
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            text-align: left;
+        }
+        .achievement-image {
+            flex-shrink: 0;
+        }
+        .achievement-text {
+            flex: 1;
         }
         .achievement img {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             object-fit: contain;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
             background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 15px;
+            padding: 20px;
             transition: transform 0.3s ease;
         }
         .achievement img:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(5deg);
         }
         .achievement h4 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
             color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         .achievement p {
             color: rgba(255,255,255,0.9);
-            font-weight: 500;
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
         .bugcrowd-link {
             display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             background: rgba(255,255,255,0.2);
             color: white;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 20px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            font-size: 0.85rem;
         }
         .bugcrowd-link:hover {
             background: rgba(255,255,255,0.3);
@@ -242,6 +249,15 @@
             .nav-links {gap: 1rem;}
             .hero h2 {font-size: 2rem;}
             .blog-list {grid-template-columns: 1fr;}
+            .achievement-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .achievement img {
+                width: 150px;
+                height: 150px;
+            }
         }
         /* Fade-in animation */
         @keyframes fadeIn {
@@ -280,13 +296,17 @@
             <!-- Achievement Highlight -->
             <div class="achievement">
                 <div class="achievement-content">
-                    <img src="top1000.png" alt="Top 1000 Hackers Badge" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="display:none; width:150px; height:150px; background:var(--primary); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:4rem;">🏆</div>
-                    <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
-                    <p>Ranked among the elite security researchers worldwide</p>
-                    <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank" class="bugcrowd-link">
-                        View My Bugcrowd Profile →
-                    </a>
+                    <div class="achievement-image">
+                        <img src="top1000.png" alt="Top 1000 Hackers Badge" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display:none; width:200px; height:200px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:5rem;">🏆</div>
+                    </div>
+                    <div class="achievement-text">
+                        <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
+                        <p>Ranked among the elite security researchers worldwide</p>
+                        <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank" class="bugcrowd-link">
+                            View My Profile →
+                        </a>
+                    </div>
                 </div>
             </div>
             
