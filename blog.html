@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Tables LFI Vulnerability - Muhammad Waseem</title>
+    <title>Advanced Ninja Tables LFI Vulnerability - Muhammad Waseem</title>
     <meta name="author" content="Muhammad Waseem">
     <meta name="description" content="Security writeup: Ninja Tables <4.1.9 - Unauthenticated Arbitrary File Read [LFI]">
     
@@ -178,7 +178,7 @@
             background: rgba(255,255,255,0.2);
             margin: 3rem 0;
         }
-        /* Enhanced Animations */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -217,77 +217,9 @@
             50% { transform: scale(1.02); }
         }
         
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: var(--primary); }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        @keyframes glow {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(0, 200, 150, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(0, 200, 150, 0.6);
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes slideInRotate {
-            from {
-                opacity: 0;
-                transform: translateX(-100px) rotate(-10deg);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) rotate(0deg);
-            }
-        }
-        
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(-100px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) translateY(0);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        @keyframes matrix {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
         /* Apply animations */
         .blog-header {
-            animation: bounceIn 1.2s ease-out;
-        }
-        
-        .blog-header h1 {
-            position: relative;
-            overflow: hidden;
-            animation: slideInRotate 1s ease-out both;
-        }
-        
-        .blog-meta {
-            animation: fadeInUp 0.8s ease-out both;
+            animation: fadeInUp 0.8s ease-out;
         }
         
         .blog-content > .container > * {
@@ -295,71 +227,44 @@
             animation-fill-mode: both;
         }
         
+        .blog-content > .container > *:nth-child(1) { animation-delay: 0.1s; }
+        .blog-content > .container > *:nth-child(2) { animation-delay: 0.2s; }
+        .blog-content > .container > *:nth-child(3) { animation-delay: 0.3s; }
+        .blog-content > .container > *:nth-child(4) { animation-delay: 0.4s; }
+        .blog-content > .container > *:nth-child(5) { animation-delay: 0.5s; }
+        .blog-content > .container > *:nth-child(6) { animation-delay: 0.6s; }
+        .blog-content > .container > *:nth-child(7) { animation-delay: 0.7s; }
+        .blog-content > .container > *:nth-child(8) { animation-delay: 0.8s; }
+        .blog-content > .container > *:nth-child(9) { animation-delay: 0.9s; }
+        .blog-content > .container > *:nth-child(n+10) { animation-delay: 1s; }
+        
         .vulnerability-box {
             animation: slideInLeft 0.8s ease-out;
+            animation-delay: 0.3s;
             animation-fill-mode: both;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .vulnerability-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 62, 85, 0.1), transparent);
-            animation: matrix 3s infinite;
-            z-index: -1;
         }
         
         .impact-box {
             animation: slideInRight 0.8s ease-out;
+            animation-delay: 0.5s;
             animation-fill-mode: both;
-        }
-        
-        .impact-box:hover {
-            animation: float 2s ease-in-out infinite;
         }
         
         .remediation-box {
             animation: slideInLeft 0.8s ease-out;
+            animation-delay: 0.7s;
             animation-fill-mode: both;
         }
         
         .code-block {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             animation: fadeInUp 0.6s ease-out;
             animation-fill-mode: both;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 200, 150, 0.1), transparent);
-            transition: left 0.6s;
-            z-index: 1;
-        }
-        
-        .code-block:hover::before {
-            left: 100%;
         }
         
         .code-block:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 200, 150, 0.25);
-        }
-        
-        .code-block pre {
-            position: relative;
-            z-index: 2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 200, 150, 0.15);
         }
         
         .blog-image {
@@ -604,7 +509,7 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
     </div>
 
     <script>
-        // Enhanced animation system
+        // Smooth scroll animation for elements
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -614,210 +519,60 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Add special effects based on element type
-                    if (entry.target.classList.contains('code-block')) {
-                        addTypewriterEffect(entry.target);
-                    }
                 }
             });
         }, observerOptions);
         
-        // Typewriter effect for code blocks
-        function addTypewriterEffect(codeBlock) {
-            const pre = codeBlock.querySelector('pre');
-            if (!pre || pre.dataset.animated) return;
-            
-            const originalText = pre.textContent;
-            pre.textContent = '';
-            pre.dataset.animated = 'true';
-            
-            let i = 0;
-            const typeInterval = setInterval(() => {
-                pre.textContent = originalText.slice(0, i);
-                i++;
-                if (i > originalText.length) {
-                    clearInterval(typeInterval);
-                }
-            }, 20);
-        }
-        
-        // Particle effect for vulnerability boxes
-        function createParticles(element) {
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 4px;
-                    height: 4px;
-                    background: var(--primary);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    opacity: 0;
-                `;
-                element.appendChild(particle);
-                
-                // Animate particle
-                const animation = particle.animate([
-                    { 
-                        transform: 'translate(0, 0) scale(0)',
-                        opacity: 1
-                    },
-                    { 
-                        transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(1)`,
-                        opacity: 0
-                    }
-                ], {
-                    duration: 2000,
-                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                });
-                
-                animation.onfinish = () => particle.remove();
-            }
-        }
-        
+        // Add fade-in class to elements and observe them
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize all animations
             const elements = document.querySelectorAll('h2, h3, p, .code-block, .blog-image');
             
             elements.forEach((el, index) => {
+                // Add a small delay for staggered animation
                 setTimeout(() => {
                     el.classList.add('fade-in');
                     observer.observe(el);
                 }, index * 50);
             });
             
-            // Enhanced code block interactions
-            const codeBlocks = document.querySelectorAll('.code-block');
+            // Add typing animation to code blocks
+            const codeBlocks = document.querySelectorAll('.code-block pre');
             codeBlocks.forEach(block => {
                 block.addEventListener('mouseenter', () => {
-                    block.style.transform = 'translateY(-5px) scale(1.02)';
-                    block.style.boxShadow = '0 20px 40px rgba(0, 200, 150, 0.3)';
+                    block.style.animation = 'none';
+                    block.style.transform = 'scale(1.02)';
                 });
                 
                 block.addEventListener('mouseleave', () => {
-                    block.style.transform = '';
-                    block.style.boxShadow = '';
-                });
-                
-                // Add click effect
-                block.addEventListener('click', () => {
-                    createParticles(block);
+                    block.style.transform = 'scale(1)';
                 });
             });
             
-            // Enhanced vulnerability box interactions
-            const vulnBoxes = document.querySelectorAll('.vulnerability-box, .impact-box, .remediation-box');
-            vulnBoxes.forEach(box => {
-                box.addEventListener('mouseenter', () => {
-                    createParticles(box);
-                });
-            });
-            
-            // Smooth scrolling with progress indicator
-            let ticking = false;
-            function updateScrollProgress() {
-                const scrollProgress = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
-                document.body.style.setProperty('--scroll-progress', scrollProgress);
-                
-                // Parallax effects
-                const images = document.querySelectorAll('.blog-image');
-                images.forEach(img => {
-                    const rect = img.getBoundingClientRect();
-                    const speed = 0.5;
-                    const yPos = -(rect.top * speed);
-                    img.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                });
-                
-                ticking = false;
-            }
-            
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateScrollProgress);
-                    ticking = true;
-                }
-            });
-            
-            // Add magnetic effect to buttons
-            const buttons = document.querySelectorAll('.back-link');
-            buttons.forEach(button => {
-                button.addEventListener('mousemove', (e) => {
-                    const rect = button.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    
-                    button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
-                });
-                
-                button.addEventListener('mouseleave', () => {
-                    button.style.transform = '';
-                });
-            });
-            
-            // Matrix rain effect for nav (Easter egg)
-            let matrixActive = false;
-            document.addEventListener('keydown', (e) => {
-                if (e.code === 'KeyM' && e.ctrlKey) {
-                    if (!matrixActive) {
-                        createMatrixRain();
-                        matrixActive = true;
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     }
-                }
+                });
+            });
+            
+            // Add parallax effect to images
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const images = document.querySelectorAll('.blog-image');
+                
+                images.forEach(img => {
+                    const rate = scrolled * -0.5;
+                    img.style.transform = `translateY(${rate}px)`;
+                });
             });
         });
-        
-        // Matrix rain effect
-        function createMatrixRain() {
-            const canvas = document.createElement('canvas');
-            canvas.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1000;
-                pointer-events: none;
-                opacity: 0.1;
-            `;
-            document.body.appendChild(canvas);
-            
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const chars = '01';
-            const charSize = 14;
-            const columns = canvas.width / charSize;
-            const drops = Array(Math.floor(columns)).fill(1);
-            
-            function draw() {
-                ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = '#00c896';
-                ctx.font = charSize + 'px monospace';
-                
-                for (let i = 0; i < drops.length; i++) {
-                    const text = chars[Math.floor(Math.random() * chars.length)];
-                    ctx.fillText(text, i * charSize, drops[i] * charSize);
-                    
-                    if (drops[i] * charSize > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-            }
-            
-            const interval = setInterval(draw, 35);
-            
-            // Remove after 5 seconds
-            setTimeout(() => {
-                clearInterval(interval);
-                canvas.remove();
-                matrixActive = false;
-            }, 5000);
-        }
     </script>
 
 </body>
