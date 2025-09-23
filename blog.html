@@ -240,11 +240,7 @@
             <div class="code-block">
                 <pre><code># Extract nonce from WordPress page source
 curl -s https://target.com | grep -oP '"ninja_table_public_nonce":"\K[a-z0-9]+'
-
-# Alternative method using browser developer tools
-# 1. Open browser developer console (F12)
-# 2. Search for 'ninja_table_public_nonce' in page source
-# 3. Copy the alphanumeric value</code></pre>
+</code></pre>
             </div>
 
             <p><strong>Expected output:</strong></p>
