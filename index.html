@@ -147,16 +147,22 @@
         }
         .achievement img {
             width: 300px;
-            height: 300px;
+            height: auto;
+            max-height: 300px;
             object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 10px;
             transition: transform 0.3s ease;
+            display: block;
         }
         .achievement img:hover {
             transform: scale(1.05) rotate(5deg);
+        }
+        .image-caption {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.5rem;
+            font-style: italic;
         }
         .achievement h4 {
             font-size: 1.2rem;
@@ -256,7 +262,7 @@
             }
             .achievement img {
                 width: 200px;
-                height: 200px;
+                max-height: 200px;
             }
         }
         /* Fade-in animation */
@@ -299,6 +305,7 @@
                     <div class="achievement-image">
                         <img src="top1000.png" alt="Top 1000 Hackers Badge" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div style="display:none; width:300px; height:300px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8rem;">🏆</div>
+                        <div class="image-caption">Official Top 1000 Hackers Badge</div>
                     </div>
                     <div class="achievement-text">
                         <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
