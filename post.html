@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS to Account Takeover - Security Writeup</title>
+    <meta name="description" content="Detailed bug bounty writeup of a critical XSS vulnerability">
+    
+    <!-- Cloudflare CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Google Font - Single font for speed -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00c896;
+            --dark: #121212;
+            --light: #f5f5f7;
+            --accent: #ff3e55;
+        }
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: var(--dark);
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        nav {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(18,18,18,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .article {
+            padding: 8rem 0 4rem;
+        }
+        .article h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .article-meta {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        .article-content h3 {
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+        .article-content code {
+            background: rgba(255,255,255,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .article-content pre {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .article-content ul {
+            margin-bottom: 1.5rem;
+            margin-left: 1.5rem;
+        }
+        .article-content ul li {
+            margin-bottom: 0.5rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .breadcrumb a {
+            color: var(--light);
+            opacity: 0.7;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <img src="myimage.jpeg" alt="Muhammad Waseem" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                <h1>Waseem</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#blogs">Blogs</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="article">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> → 
+                <span>XSS to Account Takeover</span>
+            </div>
+            
+            <h2>XSS to Account Takeover: A Critical Bug in Social Media Platform</h2>
+            <div class="article-meta">
+                <span>September 20, 2025</span> • 
+                <span>Critical Severity</span> • 
+                <span>$5000 Bounty</span>
+            </div>
+            
+            <div class="article-content">
+                <p>I discovered a stored XSS vulnerability in a popular social media platform that could lead to complete account takeover. This writeup details my findings, exploitation techniques, and the responsible disclosure process.</p>
+                
+                <h3>Discovery</h3>
+                <p>While testing the profile customization feature, I noticed that the platform allowed users to add custom CSS to their profiles. Upon closer inspection, I found that the sanitization logic was incomplete and could be bypassed.</p>
+                
+                <h3>Exploitation</h3>
+                <p>The vulnerability existed in the profile theme feature where users could customize their profile appearance. The CSS validation was insufficient and allowed JavaScript injection via the <code>expression()</code> property in IE and Edge browsers.</p>
+                
+                <pre><code>body {
+  background-color: expression(alert(document.cookie));
+}</code></pre>
+                
+                <p>This code would execute whenever another user viewed the malicious profile, stealing their session cookies and allowing account takeover.</p>
+                
+                <h3>Impact</h3>
+                <p>The vulnerability allowed an attacker to:</p>
+                <ul>
+                    <li>Steal session cookies of any user viewing the profile</li>
+                    <li>Perform actions on behalf of the victim</li>
+                    <li>Access private information and messages</li>
+                    <li>Potentially escalate to further attacks</li>
+                </ul>
+                
+                <h3>Remediation</h3>
+                <p>The company addressed this vulnerability by implementing a more robust CSS sanitization process, including:</p>
+                <ul>
+                    <li>Removing all potentially dangerous CSS functions</li>
+                    <li>Adding a Content Security Policy that blocks inline scripts</li>
+                    <li>Implementing proper validation of all user inputs</li>
+                </ul>
+                
+                <h3>Timeline</h3>
+                <p>Aug 15, 2025: Vulnerability reported<br>
+                Aug 16, 2025: Initial response from security team<br>
+                Aug 20, 2025: Vulnerability confirmed<br>
+                Sep 05, 2025: Fix deployed<br>
+                Sep 20, 2025: Bounty awarded ($5000)</p>
+                
+                <h3>Conclusion</h3>
+                <p>This finding highlights the importance of proper input sanitization, especially for features that allow users to inject custom code. Even seemingly harmless features like CSS customization can lead to serious security vulnerabilities if not properly implemented.</p>
+                
+                <a href="index.html" class="back-link">← Back to home</a>
+            </div>
+        </div>
+    </article>
+
+    <script src="post.js"></script>
+</body>
+</html>

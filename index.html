@@ -1,258 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Waseem - Cybersecurity Specialist</title>
-  <style>
-    /* General Styles */
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #1e1e2f;
-  color: #ffffff;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h1, h2, h3 {
-  color: #ffffff;
-}
-
-p {
-  color: #b3b3b3;
-}
-
-/* Header */
-header {
-  background: #2a2a40;
-  color: #ffffff;
-  padding: 60px 0;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2.5em;
-}
-
-header p {
-  margin: 10px 0 0;
-  font-size: 1.2em;
-}
-
-/* Sections */
-section {
-  padding: 60px 0;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2em;
-}
-
-/* Skills Section */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.skill-card {
-  background: #2a2a40;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-10px);
-}
-
-.skill-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.5em;
-}
-
-.skill-card p {
-  margin: 0;
-}
-
-/* Projects Section */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.project-card {
-  background: #2a2a40;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-}
-
-.project-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.5em;
-}
-
-.project-card p {
-  margin: 0;
-}
-
-/* Contact Form */
-#contact-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-#contact-form input, #contact-form textarea {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background: #2a2a40;
-  color: #ffffff;
-}
-
-#contact-form button {
-  padding: 10px;
-  background: #ff6b6b;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#contact-form button:hover {
-  background: #ff4c4c;
-}
-
-/* Footer */
-footer {
-  background: #2a2a40;
-  color: #ffffff;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 40px;
-}
-
-footer a {
-  color: #ff6b6b;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Waseem - Bug Bounty Hunter</title>
+    <meta name="description" content="Top 1000 Bug Bounty Hunter • Security Researcher • Bug Hunter">
+    
+    <!-- Cloudflare CSS for fast loading -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Single Google Font for speed -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00c896;
+            --dark: #121212;
+            --light: #f5f5f7;
+            --accent: #ff3e55;
+        }
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: var(--dark);
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        nav {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(18,18,18,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        .hero-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--primary);
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stats span {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        section {
+            padding: 4rem 0;
+        }
+        section h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        section p {
+            margin-bottom: 1rem;
+            max-width: 700px;
+        }
+        .about {
+            background: rgba(255,255,255,0.03);
+        }
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        .blogs {
+            padding: 4rem 0;
+        }
+        .blog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .blog-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-content {
+            padding: 1.5rem;
+        }
+        .blog-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .blog-meta {
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+        .blog-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .blog-card a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .nav-links {gap: 1rem;}
+            .hero h2 {font-size: 2rem;}
+            .blog-list {grid-template-columns: 1fr;}
+        }
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header Section -->
-  <header>
-    <div class="container">
-      <h1>Muhammad Waseem</h1>
-      <p>Cybersecurity Enthusiast | Bug Hunter | Open Source Contributor</p>
-    </div>
-  </header>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        Hi! I'm Muhammad Waseem, a passionate cybersecurity enthusiast and bug hunter. I specialize in malware analysis, penetration testing, and building tools to secure digital assets. My goal is to become a cybersecurity specialist and contribute to making the digital world a safer place.
-      </p>
-    </div>
-  </section>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <img src="myimage.jpeg" alt="Muhammad Waseem">
+                <h1>Waseem</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Bug Hunting</h3>
-          <p>Identifying and reporting vulnerabilities in web applications.</p>
+    <main id="home" class="hero">
+        <div class="container">
+            <img class="hero-img" src="myimage.jpeg" alt="Muhammad Waseem">
+            <h2>Bug Bounty Hunter</h2>
+            <p>Top 1000 worldwide • 200+ companies secured</p>
+            <div class="stats">
+                <span>Google</span>
+                <span>NASA</span>
+                <span>Microsoft</span>
+                <span>IBM</span>
+            </div>
         </div>
-        <div class="skill-card">
-          <h3>Malware Analysis</h3>
-          <p>Analyzing and reverse-engineering malicious software.</p>
-        </div>
-        <div class="skill-card">
-          <h3>Penetration Testing</h3>
-          <p>Simulating cyber attacks to identify security weaknesses.</p>
-        </div>
-        <div class="skill-card">
-          <h3>Open Source</h3>
-          <p>Contributing to and building open-source security tools.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </main>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Bug Hunter Toolkit</h3>
-          <p>A collection of tools and scripts for automating bug hunting workflows.</p>
+    <section id="about" class="about">
+        <div class="container">
+            <h3>About</h3>
+            <p>Elite security researcher specializing in web application vulnerabilities and bug bounty hunting. Recognized by NASA and ranked in top 1000 hackers globally.</p>
+            <p>My focus is on discovering critical security vulnerabilities that have real-world impact. I approach security from an attacker's perspective, finding weaknesses that others miss.</p>
         </div>
-        <div class="project-card">
-          <h3>Malware Analyzer</h3>
-          <p>An open-source tool for analyzing and reverse-engineering malware.</p>
+    </section>
+
+    <section id="blogs" class="blogs">
+        <div class="container">
+            <h3>Security Writeups</h3>
+            <div class="blog-list">
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4>XSS to Account Takeover</h4>
+                        <div class="blog-meta">
+                            <span>Critical Severity</span> • 
+                            <span>$5000 Bounty</span>
+                        </div>
+                        <p>A stored XSS vulnerability in a popular social media platform that led to complete account takeover through CSS injection.</p>
+                        <a href="post.html">Read more →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4>IDOR in Banking API</h4>
+                        <div class="blog-meta">
+                            <span>Critical Severity</span> • 
+                            <span>$7500 Bounty</span>
+                        </div>
+                        <p>Discovered an IDOR vulnerability in a banking application that allowed unauthorized access to financial records.</p>
+                        <a href="#">Coming soon →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4>OAuth Flow Bypass</h4>
+                        <div class="blog-meta">
+                            <span>High Severity</span> • 
+                            <span>$3000 Bounty</span>
+                        </div>
+                        <p>Analysis of a complex OAuth implementation vulnerability that allowed authentication bypass in a major SaaS platform.</p>
+                        <a href="#">Coming soon →</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-card">
-          <h3>Mobile Pentesting Guide</h3>
-          <p>A comprehensive guide to mobile application penetration testing.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h3>Contact</h3>
+            <p>📧 security@waseem.dev</p>
+            <p>🔗 <a href="https://bugcrowd.com/h/MuhammadWaseem">Bugcrowd Profile</a></p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2023 Muhammad Waseem. All rights reserved.</p>
-      <p>Follow me on <a href="https://github.com/MuhammadWaseem29" target="_blank">GitHub</a></p>
-    </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
