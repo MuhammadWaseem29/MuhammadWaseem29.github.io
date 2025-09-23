@@ -141,6 +141,12 @@
             object-fit: contain;
             margin-bottom: 1rem;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px;
         }
         .achievement h4 {
             font-size: 1.5rem;
@@ -269,7 +275,8 @@
             <!-- Achievement Highlight -->
             <div class="achievement">
                 <div class="achievement-content">
-                    <img src="top1000.png" alt="Top 1000 Hackers Badge">
+                    <img src="top1000.png" alt="Top 1000 Hackers Badge" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display:none; width:80px; height:80px; background:var(--primary); border-radius:50%; margin:0 auto 1rem; align-items:center; justify-content:center; font-size:2rem;">🏆</div>
                     <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
                     <p>Ranked among the elite security researchers worldwide</p>
                     <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank" class="bugcrowd-link">
