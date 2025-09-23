@@ -178,6 +178,153 @@
             background: rgba(255,255,255,0.2);
             margin: 3rem 0;
         }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        /* Apply animations */
+        .blog-header {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .blog-content > .container > * {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .blog-content > .container > *:nth-child(1) { animation-delay: 0.1s; }
+        .blog-content > .container > *:nth-child(2) { animation-delay: 0.2s; }
+        .blog-content > .container > *:nth-child(3) { animation-delay: 0.3s; }
+        .blog-content > .container > *:nth-child(4) { animation-delay: 0.4s; }
+        .blog-content > .container > *:nth-child(5) { animation-delay: 0.5s; }
+        .blog-content > .container > *:nth-child(6) { animation-delay: 0.6s; }
+        .blog-content > .container > *:nth-child(7) { animation-delay: 0.7s; }
+        .blog-content > .container > *:nth-child(8) { animation-delay: 0.8s; }
+        .blog-content > .container > *:nth-child(9) { animation-delay: 0.9s; }
+        .blog-content > .container > *:nth-child(n+10) { animation-delay: 1s; }
+        
+        .vulnerability-box {
+            animation: slideInLeft 0.8s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+        
+        .impact-box {
+            animation: slideInRight 0.8s ease-out;
+            animation-delay: 0.5s;
+            animation-fill-mode: both;
+        }
+        
+        .remediation-box {
+            animation: slideInLeft 0.8s ease-out;
+            animation-delay: 0.7s;
+            animation-fill-mode: both;
+        }
+        
+        .code-block {
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .code-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 200, 150, 0.15);
+        }
+        
+        .blog-image {
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .blog-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        
+        .back-link {
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-link:hover {
+            animation: none;
+        }
+        
+        /* Nav animation */
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         @media (max-width: 768px) {
             .blog-header h1 {font-size: 2rem;}
             .nav-links {gap: 1rem;}
@@ -360,6 +507,73 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
             <a href="index.html" class="back-link">← Back to Home</a>
         </div>
     </div>
+
+    <script>
+        // Smooth scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Add fade-in class to elements and observe them
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('h2, h3, p, .code-block, .blog-image');
+            
+            elements.forEach((el, index) => {
+                // Add a small delay for staggered animation
+                setTimeout(() => {
+                    el.classList.add('fade-in');
+                    observer.observe(el);
+                }, index * 50);
+            });
+            
+            // Add typing animation to code blocks
+            const codeBlocks = document.querySelectorAll('.code-block pre');
+            codeBlocks.forEach(block => {
+                block.addEventListener('mouseenter', () => {
+                    block.style.animation = 'none';
+                    block.style.transform = 'scale(1.02)';
+                });
+                
+                block.addEventListener('mouseleave', () => {
+                    block.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add parallax effect to images
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const images = document.querySelectorAll('.blog-image');
+                
+                images.forEach(img => {
+                    const rate = scrolled * -0.5;
+                    img.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
