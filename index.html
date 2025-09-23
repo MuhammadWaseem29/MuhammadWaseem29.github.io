@@ -220,47 +220,124 @@
             padding-bottom: 0.5rem;
         }
         .blogs {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: rgba(0, 200, 150, 0.03);
+        }
+        .blogs h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        .blogs h3::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .blog-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
         .blog-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
+            position: relative;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
         .blog-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 200, 150, 0.15);
+            border-color: var(--primary);
         }
         .blog-content {
-            padding: 1.5rem;
+            padding: 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         .blog-card h4 {
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--primary);
+            line-height: 1.3;
         }
         .blog-meta {
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            opacity: 0.7;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .blog-meta span {
+            background: rgba(0, 200, 150, 0.15);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            white-space: nowrap;
+        }
+        .blog-card p {
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            flex: 1;
+            font-size: 1rem;
+            opacity: 0.9;
         }
         .blog-card a {
-            display: inline-block;
-            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: auto;
+            transition: all 0.3s ease;
         }
         .blog-card a:hover {
-            text-decoration: underline;
+            color: var(--light);
+            transform: translateX(5px);
+        }
+        .blog-card a::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        .blog-card a:hover::after {
+            transform: translateX(3px);
         }
         @media (max-width: 768px) {
             .nav-links {gap: 1rem;}
             .hero h2 {font-size: 2rem;}
-            .blog-list {grid-template-columns: 1fr;}
+            .blog-list {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .blog-content {
+                padding: 2rem;
+            }
+            .blogs h3 {
+                font-size: 2rem;
+            }
             .achievement-content {
                 flex-direction: column;
                 text-align: center;
@@ -336,41 +413,44 @@
 
     <section id="blogs" class="blogs">
         <div class="container">
-            <h3>Security Writeups</h3>
+            <h3>Security Research & Vulnerability Analysis</h3>
             <div class="blog-list">
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>Ninja Tables LFI Vulnerability</h4>
+                        <h4>Advanced Ninja Tables LFI Vulnerability Analysis</h4>
                         <div class="blog-meta">
-                            <span>Critical Severity</span> • 
+                            <span>Critical Severity</span>
                             <span>WordPress Plugin</span>
+                            <span>CVE Research</span>
                         </div>
-                        <p>Ninja Tables <4.1.9 - Unauthenticated Arbitrary File Read vulnerability allowing attackers to read sensitive files like /etc/passwd and wp-config.php.</p>
-                        <a href="blog.html">Read more →</a>
+                        <p>Comprehensive security analysis of Ninja Tables WordPress plugin versions <4.1.9 revealing a critical Unauthenticated Arbitrary File Read vulnerability. Deep dive into exploitation techniques, impact assessment, and practical demonstration of how attackers can read sensitive server files including /etc/passwd, wp-config.php, and other critical system files through crafted HTTP requests.</p>
+                        <a href="blog.html">Read Full Analysis</a>
                     </div>
                 </div>
                 
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>CVE-2025-29927 Middleware Bypass</h4>
+                        <h4>CVE-2025-29927: Next.js Middleware Authentication Bypass</h4>
                         <div class="blog-meta">
-                            <span>High Severity</span> • 
+                            <span>High Severity</span>
                             <span>CVSS 8.2</span>
+                            <span>PoC Research</span>
                         </div>
-                        <p>Authentication bypass vulnerability in Next.js middleware configurations through crafted HTTP headers and subrequest manipulation.</p>
-                        <a href="cve-blog.html">Read more →</a>
+                        <p>Professional security research demonstrating a critical authentication bypass vulnerability in Next.js middleware configurations. Detailed proof-of-concept showing how specially crafted X-Middleware-Subrequest headers can circumvent authentication mechanisms, providing unauthorized access to protected administrative dashboards and sensitive application areas.</p>
+                        <a href="cve-blog.html">View PoC Research</a>
                     </div>
                 </div>
                 
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>OAuth Flow Bypass</h4>
+                        <h4>Complex OAuth 2.0 Implementation Bypass</h4>
                         <div class="blog-meta">
-                            <span>High Severity</span> • 
+                            <span>High Severity</span>
                             <span>$3000 Bounty</span>
+                            <span>Coming Soon</span>
                         </div>
-                        <p>Analysis of a complex OAuth implementation vulnerability that allowed authentication bypass in a major SaaS platform.</p>
-                        <a href="#">Coming soon →</a>
+                        <p>In-depth analysis of a sophisticated OAuth 2.0 implementation vulnerability discovered in a major SaaS platform. Research covers state parameter manipulation, PKCE bypass techniques, and token validation flaws that enabled complete authentication bypass. Includes detailed exploitation methodology and impact assessment for enterprise environments.</p>
+                        <a href="#">Coming Soon</a>
                     </div>
                 </div>
             </div>
