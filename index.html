@@ -110,12 +110,13 @@
         }
         .achievement {
             background: linear-gradient(135deg, var(--primary), #00a67e);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 200, 150, 0.3);
         }
         .achievement::before {
             content: '';
@@ -136,17 +137,21 @@
             z-index: 2;
         }
         .achievement img {
-            width: 80px;
-            height: 80px;
+            width: 150px;
+            height: 150px;
             object-fit: contain;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
             display: block;
             margin-left: auto;
             margin-right: auto;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        .achievement img:hover {
+            transform: scale(1.05);
         }
         .achievement h4 {
             font-size: 1.5rem;
@@ -276,7 +281,7 @@
             <div class="achievement">
                 <div class="achievement-content">
                     <img src="top1000.png" alt="Top 1000 Hackers Badge" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="display:none; width:80px; height:80px; background:var(--primary); border-radius:50%; margin:0 auto 1rem; align-items:center; justify-content:center; font-size:2rem;">🏆</div>
+                    <div style="display:none; width:150px; height:150px; background:var(--primary); border-radius:50%; margin:0 auto 1.5rem; align-items:center; justify-content:center; font-size:4rem;">🏆</div>
                     <h4>🏆 Top 1000 Hackers on Bugcrowd</h4>
                     <p>Ranked among the elite security researchers worldwide</p>
                     <a href="https://bugcrowd.com/h/MuhammadWaseem" target="_blank" class="bugcrowd-link">
