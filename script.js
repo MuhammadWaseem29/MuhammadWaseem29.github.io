@@ -308,3 +308,85 @@ const additionalStyles = `
 `;
 
 document.head.insertAdjacentHTML('beforeend', additionalStyles);
+
+// Enhanced Blog Animations
+function initBlogAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe blog cards
+    document.querySelectorAll('.blog-card').forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        card.style.transition = `all 0.8s ease ${index * 0.2}s`;
+        observer.observe(card);
+    });
+
+    // Add hover sound effect simulation
+    document.querySelectorAll('.blog-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
+// Enhanced scroll animations
+function initScrollAnimations() {
+    const animateOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.blog-card, .achievement, .about-content').forEach(el => {
+        animateOnScroll.observe(el);
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initBlogAnimations();
+    initScrollAnimations();
+    
+    // Add typing effect to blog section title
+    const blogTitle = document.querySelector('#blogs h3');
+    if (blogTitle) {
+        const originalText = blogTitle.textContent;
+        blogTitle.textContent = '';
+        let i = 0;
+        
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                blogTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                typeWriter();
+                observer.disconnect();
+            }
+        });
+        
+        observer.observe(blogTitle);
+    }
+});

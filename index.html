@@ -220,103 +220,104 @@
             padding-bottom: 0.5rem;
         }
         .blogs {
-            padding: 6rem 0;
-            background: rgba(0, 200, 150, 0.03);
-        }
-        .blogs h3 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            position: relative;
-        }
-        .blogs h3::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 3px;
-            background: var(--primary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(18,18,18,0.8) 0%, rgba(0,200,150,0.05) 100%);
         }
         .blog-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
         }
         .blog-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(0, 200, 150, 0.2);
-            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(0,200,150,0.08) 100%);
+            border: 1px solid rgba(0,200,150,0.2);
+            border-radius: 15px;
             overflow: hidden;
             transition: all 0.4s ease;
             position: relative;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUpFade 0.8s ease-out forwards;
         }
+        .blog-card:nth-child(1) { animation-delay: 0.1s; }
+        .blog-card:nth-child(2) { animation-delay: 0.3s; }
+        .blog-card:nth-child(3) { animation-delay: 0.5s; }
+        
         .blog-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,200,150,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        .blog-card:hover::before {
+            left: 100%;
         }
         .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 200, 150, 0.15);
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,200,150,0.15);
         }
         .blog-content {
-            padding: 2.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
         .blog-card h4 {
-            font-size: 1.4rem;
             margin-bottom: 1rem;
             color: var(--primary);
-            line-height: 1.3;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .blog-card:hover h4 {
+            color: #00ff9f;
+            text-shadow: 0 0 10px rgba(0,255,159,0.3);
         }
         .blog-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
             font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
         .blog-meta span {
-            background: rgba(0, 200, 150, 0.15);
+            background: rgba(0,200,150,0.1);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            border: 1px solid rgba(0, 200, 150, 0.3);
-            white-space: nowrap;
+            border: 1px solid rgba(0,200,150,0.3);
+            font-size: 0.8rem;
+            font-weight: 500;
         }
         .blog-card p {
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            flex: 1;
-            font-size: 1rem;
-            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(255,255,255,0.9);
         }
         .blog-card a {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: 1rem;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: auto;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0,200,150,0.1);
+            border: 1px solid rgba(0,200,150,0.3);
+            border-radius: 25px;
             transition: all 0.3s ease;
         }
         .blog-card a:hover {
-            color: var(--light);
+            background: var(--primary);
+            color: white;
             transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,200,150,0.3);
         }
         .blog-card a::after {
             content: '→';
@@ -325,19 +326,42 @@
         .blog-card a:hover::after {
             transform: translateX(3px);
         }
+        
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards !important;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .blogs h3 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), #00ff9f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         @media (max-width: 768px) {
             .nav-links {gap: 1rem;}
             .hero h2 {font-size: 2rem;}
-            .blog-list {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .blog-content {
-                padding: 2rem;
-            }
-            .blogs h3 {
-                font-size: 2rem;
-            }
+            .blog-list {grid-template-columns: 1fr;}
             .achievement-content {
                 flex-direction: column;
                 text-align: center;
@@ -413,44 +437,45 @@
 
     <section id="blogs" class="blogs">
         <div class="container">
-            <h3>Security Research & Vulnerability Analysis</h3>
+            <h3>Security Research & Writeups</h3>
+            <p style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">In-depth analysis of critical vulnerabilities and security research findings</p>
             <div class="blog-list">
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>Advanced Ninja Tables LFI Vulnerability Analysis</h4>
+                        <h4>Advanced Ninja Tables LFI Vulnerability</h4>
                         <div class="blog-meta">
-                            <span>Critical Severity</span>
-                            <span>WordPress Plugin</span>
-                            <span>CVE Research</span>
+                            <span>Critical</span>
+                            <span>WordPress</span>
+                            <span>LFI</span>
                         </div>
-                        <p>Comprehensive security analysis of Ninja Tables WordPress plugin versions <4.1.9 revealing a critical Unauthenticated Arbitrary File Read vulnerability. Deep dive into exploitation techniques, impact assessment, and practical demonstration of how attackers can read sensitive server files including /etc/passwd, wp-config.php, and other critical system files through crafted HTTP requests.</p>
-                        <a href="blog.html">Read Full Analysis</a>
+                        <p>Deep dive into a critical Local File Inclusion vulnerability in Ninja Tables WordPress plugin (versions <4.1.9). Complete exploitation walkthrough including payload crafting, file system access techniques, and comprehensive remediation strategies for WordPress administrators.</p>
+                        <a href="blog.html">View Complete Analysis</a>
                     </div>
                 </div>
                 
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>CVE-2025-29927: Next.js Middleware Authentication Bypass</h4>
+                        <h4>CVE-2025-29927 Middleware Bypass</h4>
                         <div class="blog-meta">
-                            <span>High Severity</span>
+                            <span>High</span>
                             <span>CVSS 8.2</span>
-                            <span>PoC Research</span>
+                            <span>Next.js</span>
                         </div>
-                        <p>Professional security research demonstrating a critical authentication bypass vulnerability in Next.js middleware configurations. Detailed proof-of-concept showing how specially crafted X-Middleware-Subrequest headers can circumvent authentication mechanisms, providing unauthorized access to protected administrative dashboards and sensitive application areas.</p>
-                        <a href="cve-blog.html">View PoC Research</a>
+                        <p>Professional security research demonstrating authentication bypass in Next.js middleware configurations. Detailed proof-of-concept showing how crafted HTTP headers exploit subrequest handling to bypass authentication mechanisms and access restricted content.</p>
+                        <a href="cve-blog.html">Read PoC Research</a>
                     </div>
                 </div>
                 
                 <div class="blog-card">
                     <div class="blog-content">
-                        <h4>Complex OAuth 2.0 Implementation Bypass</h4>
+                        <h4>Advanced IDOR in Banking API</h4>
                         <div class="blog-meta">
-                            <span>High Severity</span>
-                            <span>$3000 Bounty</span>
-                            <span>Coming Soon</span>
+                            <span>Critical</span>
+                            <span>$7,500</span>
+                            <span>Banking</span>
                         </div>
-                        <p>In-depth analysis of a sophisticated OAuth 2.0 implementation vulnerability discovered in a major SaaS platform. Research covers state parameter manipulation, PKCE bypass techniques, and token validation flaws that enabled complete authentication bypass. Includes detailed exploitation methodology and impact assessment for enterprise environments.</p>
-                        <a href="#">Coming Soon</a>
+                        <p>Comprehensive analysis of a sophisticated Insecure Direct Object Reference vulnerability discovered in a major banking application's API. Detailed methodology, exploitation techniques, and the security impact on financial data integrity.</p>
+                        <a href="#">Research in Progress</a>
                     </div>
                 </div>
             </div>
