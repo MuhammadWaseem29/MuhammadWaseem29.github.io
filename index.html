@@ -39,6 +39,7 @@
             background: rgba(18,18,18,0.9);
             backdrop-filter: blur(10px);
             z-index: 100;
+            height: auto;
         }
         nav .container {
             display: flex;
@@ -408,11 +409,14 @@
                 text-align: center;
                 transition: 0.3s;
                 padding: 2rem 0;
-                z-index: 99;
+                z-index: 101;
             }
             
             .nav-menu.active {
                 left: 0;
+                height: auto;
+                max-height: 80vh;
+                overflow-y: auto;
             }
             
             .nav-link {

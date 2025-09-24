@@ -11,6 +11,8 @@ body {
     color: #333;
     background-color: #0a0a0a;
     overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
 
 html {
@@ -33,6 +35,7 @@ html {
     z-index: 1000;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: auto;
 }
 
 .nav-container {
@@ -101,16 +104,18 @@ html {
 }
 
 /* Hero Section */
+/* Hero */
 .hero {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    padding: 0 20px;
     position: relative;
     overflow: hidden;
+    background-color: #0a0a0a;
+    padding-top: 70px;
 }
 
 .hero::before {
@@ -620,6 +625,9 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    section {
+        padding-top: 90px;
+    }
     .hamburger {
         display: flex;
     }
@@ -635,10 +643,14 @@ html {
         text-align: center;
         transition: 0.3s;
         padding: 2rem 0;
+        z-index: 1001;
     }
 
     .nav-menu.active {
         left: 0;
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
     }
 
     .nav-menu a {
