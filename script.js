@@ -3,6 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add fade-in effect
   document.body.classList.add('fade-in');
   
+  // Mobile navigation setup
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  }
+  
   // Smooth scroll for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -128,19 +147,7 @@ function setupEventListeners() {
         loadBlogPosts();
     });
 
-    // Mobile navigation
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+    // Mobile navigation is now handled in the DOMContentLoaded event
 
     // Contact form
     contactForm.addEventListener('submit', handleFormSubmit);

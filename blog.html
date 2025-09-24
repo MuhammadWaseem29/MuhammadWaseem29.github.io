@@ -46,6 +46,9 @@
             justify-content: space-between;
             align-items: center;
         }
+        .hamburger {
+            display: none;
+        }
         .logo {
             display: flex;
             align-items: center;
@@ -62,16 +65,16 @@
             font-weight: 600;
             color: var(--primary);
         }
-        .nav-links {
+        .nav-links, .nav-menu {
             display: flex;
             gap: 1.5rem;
         }
-        .nav-links a {
+        .nav-links a, .nav-link {
             color: var(--light);
             text-decoration: none;
             transition: color 0.2s;
         }
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-link:hover {
             color: var(--primary);
         }
         .blog-header {
@@ -326,24 +329,82 @@
         }
         
         @media (max-width: 768px) {
+            pre {padding: 1rem;}
             .blog-header h1 {font-size: 2rem;}
-            .nav-links {gap: 1rem;}
+            .blog-content {padding: 2rem 0;}
+            .blog-header {padding: 6rem 0 2rem;}
+            
+            /* Mobile navigation styles */
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+            }
+            
+            .bar {
+                width: 25px;
+                height: 3px;
+                background: #fff;
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-link {
+                padding: 1rem 0;
+                display: block;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container">
-            <div class="logo">
+    <nav class="navbar">
+        <div class="nav-container container">
+            <div class="logo nav-logo">
                 <img src="myimage.jpeg" alt="Muhammad Waseem">
                 <h1>Waseem</h1>
             </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#blogs">Blogs</a>
-                <a href="index.html#contact">Contact</a>
+            <div class="nav-links nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#blogs" class="nav-link">Blogs</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </nav>
@@ -525,6 +586,25 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
         
         // Add fade-in class to elements and observe them
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile navigation
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+            
             const elements = document.querySelectorAll('h2, h3, p, .code-block, .blog-image');
             
             elements.forEach((el, index) => {

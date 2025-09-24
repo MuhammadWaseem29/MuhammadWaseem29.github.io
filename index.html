@@ -45,6 +45,9 @@
             justify-content: space-between;
             align-items: center;
         }
+        .hamburger {
+            display: none;
+        }
         .logo {
             display: flex;
             align-items: center;
@@ -359,13 +362,63 @@
             background-clip: text;
         }
         @media (max-width: 768px) {
-            .nav-links {gap: 1rem;}
             .hero h2 {font-size: 2rem;}
             .blog-list {grid-template-columns: 1fr;}
             .achievement-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 1.5rem;
+            }
+            
+            /* Mobile navigation styles */
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+            }
+            
+            .bar {
+                width: 25px;
+                height: 3px;
+                background: #fff;
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-link {
+                padding: 1rem 0;
+                display: block;
+                font-size: 1.2rem;
             }
             .achievement img {
                 max-width: 250px;
@@ -386,17 +439,22 @@
 </head>
 <body>
 
-    <nav>
-        <div class="container">
-            <div class="logo">
+    <nav class="navbar">
+        <div class="nav-container container">
+            <div class="logo nav-logo">
                 <img src="myimage.jpeg" alt="Muhammad Waseem">
                 <h1>Waseem</h1>
             </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#blogs">Blogs</a>
-                <a href="#contact">Contact</a>
+            <div class="nav-links nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#blogs" class="nav-link">Blogs</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </nav>

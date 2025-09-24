@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XSS to Account Takeover - Security Writeup</title>
+      <nav class="navbar">
+        <div class="nav-container container">
+            <div class="logo nav-logo">
+                <img src="myimage.jpeg" alt="Muhammad Waseem">
+                <h1>Waseem</h1>
+            </div>
+            <div class="nav-links nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#blogs" class="nav-link">Blogs</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>o Account Takeover - Security Writeup</title>
     <meta name="description" content="Detailed bug bounty writeup of a critical XSS vulnerability">
     
     <!-- Cloudflare CSS -->
@@ -43,6 +61,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .hamburger {
+            display: none;
         }
         .logo {
             display: flex;
@@ -138,6 +159,63 @@
         body {
             opacity: 0;
             animation: fadeIn 0.8s ease-in forwards;
+        }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .article-content h2 {font-size: 1.8rem;}
+            .article-content h3 {font-size: 1.5rem;}
+            
+            /* Mobile navigation styles */
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+            }
+            
+            .bar {
+                width: 25px;
+                height: 3px;
+                background: #fff;
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-link {
+                padding: 1rem 0;
+                display: block;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
