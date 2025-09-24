@@ -363,7 +363,7 @@
         <div class="container">
             <a href="index.html" class="back-link">← Back to Home</a>
             
-            <p>This security research details a critical vulnerability discovered in the Ninja Tables WordPress plugin that allows unauthenticated attackers to read arbitrary files from the target server.</p>
+            <p>This comprehensive security research details a critical vulnerability discovered in the Ninja Tables WordPress plugin that allows unauthenticated attackers to read arbitrary files from the target server.</p>
 
             <div class="vulnerability-box">
                 <h2>Vulnerability Details: Unauthenticated Arbitrary File Read via `ninja_table_force_download`</h2>
@@ -385,7 +385,7 @@
             <p>First, we need to extract the public nonce from the target website's source code:</p>
 
             <div class="code-block">
-                <pre><code># Extract nonce from WordPress page source
+                <pre><code>
 curl -s https://target.com | grep -oP '"ninja_table_public_nonce":"\K[a-z0-9]+'
 </code></pre>
             </div>
