@@ -223,6 +223,294 @@
             border-bottom: 1px solid rgba(0, 200, 150, 0.3);
             padding-bottom: 0.5rem;
         }
+        
+        /* Companies Section Styling */
+        .companies {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(18,18,18,0.95) 0%, rgba(0,200,150,0.08) 100%);
+            position: relative;
+        }
+        
+        .companies::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0,200,150,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .companies .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .companies h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), #00ff9f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .companies-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            border: 1px solid rgba(0,200,150,0.1);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+            opacity: 1; /* Make logos immediately visible */
+            animation: logoFadeIn 0.6s ease-out forwards;
+        }
+        
+        .company-logo:nth-child(1) { animation-delay: 0.1s; }
+        .company-logo:nth-child(2) { animation-delay: 0.15s; }
+        .company-logo:nth-child(3) { animation-delay: 0.2s; }
+        .company-logo:nth-child(4) { animation-delay: 0.25s; }
+        .company-logo:nth-child(5) { animation-delay: 0.3s; }
+        .company-logo:nth-child(6) { animation-delay: 0.35s; }
+        .company-logo:nth-child(7) { animation-delay: 0.4s; }
+        .company-logo:nth-child(8) { animation-delay: 0.45s; }
+        .company-logo:nth-child(9) { animation-delay: 0.5s; }
+        .company-logo:nth-child(10) { animation-delay: 0.55s; }
+        .company-logo:nth-child(11) { animation-delay: 0.6s; }
+        .company-logo:nth-child(12) { animation-delay: 0.65s; }
+        .company-logo:nth-child(13) { animation-delay: 0.7s; }
+        .company-logo:nth-child(14) { animation-delay: 0.75s; }
+        .company-logo:nth-child(15) { animation-delay: 0.8s; }
+        .company-logo:nth-child(16) { animation-delay: 0.85s; }
+        .company-logo:nth-child(17) { animation-delay: 0.9s; }
+        .company-logo:nth-child(18) { animation-delay: 0.95s; }
+        .company-logo:nth-child(19) { animation-delay: 1.0s; }
+        .company-logo:nth-child(20) { animation-delay: 1.05s; }
+        
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .company-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,200,150,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .company-logo:hover::before {
+            left: 100%;
+        }
+        
+        .company-logo:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(0,200,150,0.1);
+            border-color: rgba(0,200,150,0.3);
+            box-shadow: 0 10px 30px rgba(0,200,150,0.2);
+        }
+        
+        .company-logo img {
+            width: 100px;
+            height: 60px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: brightness(1) contrast(1.1) saturate(1.1);
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 5px;
+        }
+        
+        .company-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1) contrast(1.2) saturate(1.2);
+        }
+        
+        /* Enhanced fallback system for missing/broken images */
+        .company-logo {
+            position: relative;
+            min-height: 80px;
+        }
+        
+        .company-logo::after {
+            content: attr(data-company);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            width: 100px;
+            height: 60px;
+            background: rgba(0,200,150,0.1);
+            border: 2px solid rgba(0,200,150,0.3);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 60px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .company-logo img[src=""], 
+        .company-logo img:not([src]),
+        .company-logo img[alt]:broken {
+            display: none;
+        }
+        
+        .company-logo img[src=""]:after, 
+        .company-logo img:not([src]):after {
+            content: attr(alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .companies-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,200,150,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0,200,150,0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Mobile Responsiveness for Companies Section */
+        @media (max-width: 768px) {
+            .companies h3 {
+                font-size: 2rem;
+            }
+            
+            .companies-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                padding: 2rem;
+            }
+            
+            .company-logo {
+                padding: 1rem;
+            }
+            
+            .company-logo img {
+                width: 70px;
+                height: 45px;
+            }
+            
+            .companies-stats {
+                gap: 2rem;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+                min-width: 150px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .companies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .companies-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+        
         .blogs {
             padding: 4rem 0;
             background: linear-gradient(135deg, rgba(18,18,18,0.8) 0%, rgba(0,200,150,0.05) 100%);
@@ -452,6 +740,7 @@
             <div class="nav-links nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
+                <a href="#companies" class="nav-link">Companies</a>
                 <a href="#blogs" class="nav-link">Blogs</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -467,7 +756,7 @@
         <div class="container">
             <img class="hero-img" src="myimage.jpeg" alt="Muhammad Waseem">
             <h2>Bug Bounty Hunter</h2>
-            <p>Top 1000 worldwide • 200+ companies secured</p>
+            <p>Top 1000 worldwide • 100+ companies secured</p>
             
             <!-- Achievement Highlight -->
             <div class="achievement">
@@ -493,7 +782,108 @@
     <section id="about" class="about">
         <div class="container">
             <h3>About</h3>
-            <p>Muhammad Waseem — Bug bounty hunter and red teamer who's helped secure 200+ companies globally, including Google, NASA, Microsoft, IBM, Adobe, Twilio, Uber, T-Mobile, Mozilla, Oracle, and Sony.</p>
+            <p>Muhammad Waseem — Elite bug bounty hunter and red teamer with expertise in web application security, API testing, and vulnerability research. Passionate about making the internet safer through ethical hacking and responsible disclosure.</p>
+        </div>
+    </section>
+
+    <!-- Companies I've Secured Section -->
+    <section id="companies" class="companies">
+        <div class="container">
+            <h3>Companies I've Secured</h3>
+            <p class="companies-subtitle">Trusted by Fortune 500 companies and leading tech organizations worldwide</p>
+            
+            <div class="companies-grid">
+                <div class="company-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiM0Mjg1RjQiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Hb29nbGU8L3RleHQ+PC9zdmc+" alt="Google" title="Google">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" title="Microsoft">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/nasa.gov" alt="NASA" title="NASA">
+                </div>
+                <div class="company-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiMwNTMyOEEiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JQk08L3RleHQ+PC9zdmc+" alt="IBM" title="IBM">
+                </div>
+                <div class="company-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiNEQzE0M0MiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BZG9iZTwvdGV4dD48L3N2Zz4=" alt="Adobe" title="Adobe">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/twilio.com" alt="Twilio" title="Twilio">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/uber.com" alt="Uber" title="Uber">
+                </div>
+                <div class="company-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRjAxOUEiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ULU1vYmlsZTwvdGV4dD48L3N2Zz4=" alt="T-Mobile" title="T-Mobile">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/mozilla.org" alt="Mozilla" title="Mozilla">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" title="Oracle">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" title="Sony">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/meta.com" alt="Meta" title="Meta (Facebook)">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon" title="Amazon">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" title="Apple">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/vodafone.com" alt="Vodafone" title="Vodafone">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks" title="Starbucks">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/paypal.com" alt="PayPal" title="PayPal">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/dropbox.com" alt="Dropbox" title="Dropbox">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/united.com" alt="United Airlines" title="United Airlines">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/hedera.com" alt="Hedera Hashgraph" title="Hedera Hashgraph">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/justeat.com" alt="Just Eat Takeaway" title="Just Eat Takeaway.com">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/fisglobal.com" alt="FIS" title="FIS">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/nubank.com.br" alt="Nubank" title="Nubank Brazil">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/tiktok.com" alt="TikTok" title="TikTok">
+                </div>
+                <div class="company-logo">
+                    <img src="https://logo.clearbit.com/redbull.com" alt="Red Bull" title="Red Bull">
+                </div>
+            </div>
+            
+            <div class="companies-stats">
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Companies Secured</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$50K+</span>
+                    <span class="stat-label">Total Bounties</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Top 1000</span>
+                    <span class="stat-label">Global Ranking</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -565,5 +955,6 @@
     </section>
 
     <script src="script.js"></script>
+    <script src="companies.js"></script>
 </body>
 </html>
