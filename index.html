@@ -269,16 +269,33 @@
         }
         
         .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2rem;
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
             margin: 4rem 0;
-            padding: 3rem;
+            padding: 3rem 0;
             background: rgba(255,255,255,0.02);
             border-radius: 20px;
             border: 1px solid rgba(0,200,150,0.1);
             backdrop-filter: blur(10px);
             animation: slideInUp 0.8s ease-out;
+        }
+        
+        .companies-scroll {
+            display: flex;
+            animation: scroll-left 60s linear infinite;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-200%);
+            }
         }
         
         @keyframes slideInUp {
@@ -303,48 +320,110 @@
         
         .company-logo {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-width: 180px;
+            height: 120px;
             padding: 1.5rem;
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 1px solid transparent;
             position: relative;
             overflow: hidden;
-            opacity: 1; /* Make logos immediately visible */
-            animation: logoFadeIn 0.6s ease-out forwards;
+            opacity: 1;
+            cursor: pointer;
+            flex-shrink: 0;
         }
         
-        .company-logo:nth-child(1) { animation-delay: 0.1s; }
-        .company-logo:nth-child(2) { animation-delay: 0.15s; }
-        .company-logo:nth-child(3) { animation-delay: 0.2s; }
-        .company-logo:nth-child(4) { animation-delay: 0.25s; }
-        .company-logo:nth-child(5) { animation-delay: 0.3s; }
-        .company-logo:nth-child(6) { animation-delay: 0.35s; }
-        .company-logo:nth-child(7) { animation-delay: 0.4s; }
-        .company-logo:nth-child(8) { animation-delay: 0.45s; }
-        .company-logo:nth-child(9) { animation-delay: 0.5s; }
-        .company-logo:nth-child(10) { animation-delay: 0.55s; }
-        .company-logo:nth-child(11) { animation-delay: 0.6s; }
-        .company-logo:nth-child(12) { animation-delay: 0.65s; }
-        .company-logo:nth-child(13) { animation-delay: 0.7s; }
-        .company-logo:nth-child(14) { animation-delay: 0.75s; }
-        .company-logo:nth-child(15) { animation-delay: 0.8s; }
-        .company-logo:nth-child(16) { animation-delay: 0.85s; }
-        .company-logo:nth-child(17) { animation-delay: 0.9s; }
-        .company-logo:nth-child(18) { animation-delay: 0.95s; }
-        .company-logo:nth-child(19) { animation-delay: 1.0s; }
-        .company-logo:nth-child(20) { animation-delay: 1.05s; }
+        .company-name {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            text-transform: none;
+        }
         
-        @keyframes logoFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(20px);
+        /* Mobile Responsiveness for Companies Section */
+        @media (max-width: 768px) {
+            .companies h3 {
+                font-size: 2rem;
             }
-            to {
+            
+            .companies-scroll {
+                animation: scroll-left 45s linear infinite;
+                gap: 2rem;
+            }
+            
+            .company-logo {
+                min-width: 150px;
+                height: 100px;
+                padding: 1rem;
+            }
+            
+            .company-logo img {
+                width: 70px;
+                height: 35px;
+            }
+            
+            .company-name {
+                font-size: 0.7rem;
+                margin-top: 0.5rem;
+            }
+            
+            .companies-stats {
+                gap: 2rem;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+                min-width: 150px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .companies-scroll {
+                animation: scroll-left 35s linear infinite;
+                gap: 1.5rem;
+            }
+            
+            .company-logo {
+                min-width: 120px;
+                height: 90px;
+                padding: 0.8rem;
+            }
+            
+            .company-logo img {
+                width: 60px;
+                height: 30px;
+            }
+            
+            .company-name {
+                font-size: 0.6rem;
+                margin-top: 0.4rem;
+            }
+        }        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) translateY(30px) rotateY(45deg);
+                filter: blur(5px);
+            }
+            60% {
+                transform: scale(1.05) translateY(-5px) rotateY(-5deg);
+            }
+            100% {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: scale(1) translateY(0) rotateY(0deg);
+                filter: blur(0px);
             }
         }
         
@@ -364,26 +443,61 @@
         }
         
         .company-logo:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: rgba(0,200,150,0.1);
-            border-color: rgba(0,200,150,0.3);
-            box-shadow: 0 10px 30px rgba(0,200,150,0.2);
+            transform: translateY(-8px) scale(1.08);
+            background: rgba(0,200,150,0.15);
+            border-color: rgba(0,200,150,0.4);
+            box-shadow: 
+                0 15px 40px rgba(0,200,150,0.25),
+                0 5px 15px rgba(0,0,0,0.3);
+            animation-play-state: paused;
+        }
+        
+        .company-logo:hover .company-name {
+            color: rgba(0,200,150,1);
+            opacity: 1;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(0,200,150,0.5);
         }
         
         .company-logo img {
             width: 100px;
-            height: 60px;
+            height: 50px;
             object-fit: contain;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             filter: brightness(1) contrast(1.1) saturate(1.1);
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.02);
             border-radius: 8px;
-            padding: 5px;
+            padding: 8px;
         }
         
         .company-logo:hover img {
-            transform: scale(1.1);
-            filter: brightness(1.1) contrast(1.2) saturate(1.2);
+            transform: scale(1.15);
+            filter: brightness(1.2) contrast(1.3) saturate(1.3);
+            box-shadow: 0 8px 25px rgba(0,200,150,0.2);
+        }
+        
+        .company-logo:hover .company-name {
+            color: rgba(0,200,150,1);
+            opacity: 1;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(0,200,150,0.5);
+        }
+        
+        .company-logo img {
+            width: 100px;
+            height: 50px;
+            object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: brightness(1) contrast(1.1) saturate(1.1);
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            padding: 8px;
+        }
+        
+        .company-logo:hover img {
+            transform: scale(1.15) rotateY(5deg);
+            filter: brightness(1.2) contrast(1.3) saturate(1.3);
+            box-shadow: 0 8px 25px rgba(0,200,150,0.2);
         }
         
         /* Enhanced fallback system for missing/broken images */
@@ -478,11 +592,17 @@
             
             .company-logo {
                 padding: 1rem;
+                min-height: 120px;
             }
             
             .company-logo img {
                 width: 70px;
-                height: 45px;
+                height: 40px;
+            }
+            
+            .company-name {
+                font-size: 0.7rem;
+                margin-top: 0.5rem;
             }
             
             .companies-stats {
@@ -496,6 +616,29 @@
             
             .stat-number {
                 font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .companies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+                padding: 1.5rem;
+            }
+            
+            .company-logo {
+                padding: 0.8rem;
+                min-height: 110px;
+            }
+            
+            .company-logo img {
+                width: 60px;
+                height: 35px;
+            }
+            
+            .company-name {
+                font-size: 0.6rem;
+                margin-top: 0.4rem;
             }
         }
         
@@ -793,80 +936,107 @@
             <p class="companies-subtitle">Trusted by Fortune 500 companies and leading tech organizations worldwide</p>
             
             <div class="companies-grid">
+                <div class="companies-scroll">
                 <div class="company-logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiM0Mjg1RjQiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Hb29nbGU8L3RleHQ+PC9zdmc+" alt="Google" title="Google">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" title="Google">
+                    <span class="company-name">Google</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" title="Microsoft">
+                    <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" alt="Microsoft" title="Microsoft">
+                    <span class="company-name">Microsoft</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/nasa.gov" alt="NASA" title="NASA">
+                    <img src="https://cdn.worldvectorlogo.com/logos/nasa-6.svg" alt="NASA" title="NASA">
+                    <span class="company-name">NASA</span>
                 </div>
                 <div class="company-logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiMwNTMyOEEiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JQk08L3RleHQ+PC9zdmc+" alt="IBM" title="IBM">
+                    <img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" alt="IBM" title="IBM">
+                    <span class="company-name">IBM</span>
                 </div>
                 <div class="company-logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiNEQzE0M0MiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BZG9iZTwvdGV4dD48L3N2Zz4=" alt="Adobe" title="Adobe">
+                    <img src="https://cdn.worldvectorlogo.com/logos/adobe-1.svg" alt="Adobe" title="Adobe">
+                    <span class="company-name">Adobe</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/twilio.com" alt="Twilio" title="Twilio">
+                    <img src="https://cdn.worldvectorlogo.com/logos/twilio.svg" alt="Twilio" title="Twilio">
+                    <span class="company-name">Twilio</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/uber.com" alt="Uber" title="Uber">
+                    <img src="https://cdn.worldvectorlogo.com/logos/uber.svg" alt="Uber" title="Uber">
+                    <span class="company-name">Uber</span>
                 </div>
                 <div class="company-logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTAwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRjAxOUEiLz48dGV4dCB4PSI1MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ULU1vYmlsZTwvdGV4dD48L3N2Zz4=" alt="T-Mobile" title="T-Mobile">
+                    <img src="https://cdn.worldvectorlogo.com/logos/t-mobile-2.svg" alt="T-Mobile" title="T-Mobile">
+                    <span class="company-name">T-Mobile</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/mozilla.org" alt="Mozilla" title="Mozilla">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Mozilla_Firefox_logo_2013.svg/1200px-Mozilla_Firefox_logo_2013.svg.png" alt="Mozilla" title="Mozilla Firefox">
+                    <span class="company-name">Mozilla</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" title="Oracle">
+                    <img src="https://cdn.worldvectorlogo.com/logos/oracle-6.svg" alt="Oracle" title="Oracle">
+                    <span class="company-name">Oracle</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" title="Sony">
+                    <img src="https://cdn.worldvectorlogo.com/logos/sony-1.svg" alt="Sony" title="Sony Corporation">
+                    <span class="company-name">Sony</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/meta.com" alt="Meta" title="Meta (Facebook)">
+                    <img src="https://cdn.worldvectorlogo.com/logos/meta-1.svg" alt="Meta" title="Meta (Facebook)">
+                    <span class="company-name">Meta</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon" title="Amazon">
+                    <img src="https://cdn.worldvectorlogo.com/logos/amazon.svg" alt="Amazon" title="Amazon">
+                    <span class="company-name">Amazon</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" title="Apple">
+                    <img src="https://cdn.worldvectorlogo.com/logos/apple-11.svg" alt="Apple" title="Apple">
+                    <span class="company-name">Apple</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/vodafone.com" alt="Vodafone" title="Vodafone">
+                    <img src="https://cdn.worldvectorlogo.com/logos/vodafone-2.svg" alt="Vodafone" title="Vodafone">
+                    <span class="company-name">Vodafone</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks" title="Starbucks">
+                    <img src="https://cdn.worldvectorlogo.com/logos/starbucks-2.svg" alt="Starbucks" title="Starbucks">
+                    <span class="company-name">Starbucks</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/paypal.com" alt="PayPal" title="PayPal">
+                    <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" alt="PayPal" title="PayPal">
+                    <span class="company-name">PayPal</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/dropbox.com" alt="Dropbox" title="Dropbox">
+                    <img src="https://cdn.worldvectorlogo.com/logos/dropbox-1.svg" alt="Dropbox" title="Dropbox">
+                    <span class="company-name">Dropbox</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/united.com" alt="United Airlines" title="United Airlines">
+                    <img src="https://cdn.worldvectorlogo.com/logos/united-airlines-1.svg" alt="United Airlines" title="United Airlines">
+                    <span class="company-name">United Airlines</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/hedera.com" alt="Hedera Hashgraph" title="Hedera Hashgraph">
+                    <img src="https://cryptologos.cc/logos/hedera-hashgraph-hbar-logo.png" alt="Hedera Hashgraph" title="Hedera Hashgraph">
+                    <span class="company-name">Hedera</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/justeat.com" alt="Just Eat Takeaway" title="Just Eat Takeaway.com">
+                    <img src="https://cdn.worldvectorlogo.com/logos/just-eat-1.svg" alt="Just Eat Takeaway" title="Just Eat Takeaway.com">
+                    <span class="company-name">Just Eat</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/fisglobal.com" alt="FIS" title="FIS">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/FIS_logo_%282019%29.svg/2560px-FIS_logo_%282019%29.svg.png" alt="FIS" title="FIS Financial">
+                    <span class="company-name">FIS</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/nubank.com.br" alt="Nubank" title="Nubank Brazil">
+                    <img src="https://cdn.worldvectorlogo.com/logos/nubank-3.svg" alt="Nubank" title="Nubank Brazil">
+                    <span class="company-name">Nubank</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/tiktok.com" alt="TikTok" title="TikTok">
+                    <img src="https://cdn.worldvectorlogo.com/logos/tiktok-icon-2.svg" alt="TikTok" title="TikTok">
+                    <span class="company-name">TikTok</span>
                 </div>
                 <div class="company-logo">
-                    <img src="https://logo.clearbit.com/redbull.com" alt="Red Bull" title="Red Bull">
+                    <img src="https://cdn.worldvectorlogo.com/logos/red-bull-2.svg" alt="Red Bull" title="Red Bull">
+                    <span class="company-name">Red Bull</span>
+                </div>
                 </div>
             </div>
             
